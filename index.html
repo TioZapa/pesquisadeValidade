@@ -617,7 +617,7 @@ $('p_mSearch').addEventListener('input',function(){var q=this.value.toLowerCase(
 $('p-overlay').addEventListener('click',function(e){if(e.target.id==='p-overlay'){this.classList.remove('open');document.body.style.overflow='';}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){$('p-overlay').classList.remove('open');$('p-okOverlay').classList.remove('open');document.body.style.overflow='';}});
 
-var recCols=[{key:'cliente',label:'Cliente'},{key:'cpf',label:'CPF/CNPJ'},{key:'colaborador',label:'Responsável'},{key:'visita',label:'Data da visita',num:true},{key:'cidade',label:'Cidade'},{key:'produto',label:'Produto'},{key:'precoFmt',label:'Nosso preço',num:true},{key:'fabc',label:'Concorrente'},{key:'precocFmt',label:'Preço conc.',num:true},{key:'status',label:'Status',fmt:pillFmt}];
+var recCols=[{key:'cliente',label:'Cliente'},{key:'cpf',label:'CPF/CNPJ'},{key:'colaborador',label:'Responsável'},{key:'visita',label:'Data da visita',num:true},{key:'cidade',label:'Cidade'},{key:'produto',label:'Produto'},{key:'precoFmt',label:'Nosso preço',num:true},{key:'conc',label:'Prod. concorrente'},{key:'precocFmt',label:'Preço conc.',num:true},{key:'status',label:'Status',fmt:pillFmt}];
 var cliCols=[{key:'razao',label:'Cliente'},{key:'cidade',label:'Cidade'},{key:'reg',label:'Registros',num:true},{key:'acima',label:'Acima conc.',num:true}];
 var prodCols=[{key:'produto',label:'Produto'},{key:'clientes',label:'Clientes',num:true},{key:'reg',label:'Registros',num:true}];
 var colabCols=[{key:'colab',label:'Colaborador'},{key:'sup',label:'Supervisor'},{key:'clientes',label:'Clientes',num:true},{key:'reg',label:'Registros',num:true}];
