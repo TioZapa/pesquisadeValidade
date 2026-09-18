@@ -337,9 +337,9 @@ window.addEventListener('error',function(ev){try{var s=document.getElementById('
 function setStatus(msg,kind){var s=document.getElementById('impStatus');if(!s)return;s.textContent=msg;s.style.color=kind==='err'?'#f85149':(kind==='ok'?'#00a859':'#8b949e');}
 const fmt=n=>n.toLocaleString('pt-BR');
 const COL={red:'#f85149',orange:'#ff9f1c',yellow:'#f0c419',green:'#3fb950',blue:'#58a6ff',accent:'#00a859'};
-const ORDER=['A vencer em 30 dias','A vencer em 20 dias','A vencer em 10 dias','Vence hoje','Vencido recente (1-3 dias)','Vencido (4-7 dias)','Vencido crítico (8+ dias)'];
-const statusColor={'A vencer em 30 dias':'#3fb950','A vencer em 20 dias':'#58a6ff','A vencer em 10 dias':'#9acd32','Vence hoje':COL.yellow,'Vencido recente (1-3 dias)':COL.yellow,'Vencido (4-7 dias)':COL.orange,'Vencido crítico (8+ dias)':COL.red};
-const statusPill={'A vencer em 30 dias':'p-green','A vencer em 20 dias':'p-blue','A vencer em 10 dias':'p-green','Vence hoje':'p-yellow','Vencido recente (1-3 dias)':'p-yellow','Vencido (4-7 dias)':'p-orange','Vencido crítico (8+ dias)':'p-red'};
+const ORDER=['No prazo (+30 dias)','A vencer em 30 dias','A vencer em 20 dias','A vencer em 10 dias','Vence hoje','Vencido recente (1-3 dias)','Vencido (4-7 dias)','Vencido crítico (8+ dias)'];
+const statusColor={'No prazo (+30 dias)':'#3fb950','A vencer em 30 dias':'#58a6ff','A vencer em 20 dias':'#f0c419','A vencer em 10 dias':'#ff9f1c','Vence hoje':'#e8590c','Vencido recente (1-3 dias)':'#f85149','Vencido (4-7 dias)':'#c9302c','Vencido crítico (8+ dias)':'#8b1a1a'};
+const statusPill={'No prazo (+30 dias)':'p-green','A vencer em 30 dias':'p-blue','A vencer em 20 dias':'p-yellow','A vencer em 10 dias':'p-orange','Vence hoje':'p-orange','Vencido recente (1-3 dias)':'p-red','Vencido (4-7 dias)':'p-red','Vencido crítico (8+ dias)':'p-red'};
 const MONTHS_PT={'01':'Jan','02':'Fev','03':'Mar','04':'Abr','05':'Mai','06':'Jun','07':'Jul','08':'Ago','09':'Set','10':'Out','11':'Nov','12':'Dez'};
 Chart.defaults.color='#8b949e';Chart.defaults.font.family="'Segoe UI',sans-serif";Chart.defaults.borderColor='rgba(255,255,255,.05)';
 
@@ -472,7 +472,7 @@ document.getElementById('fReset').addEventListener('click',()=>{selMonths.clear(
 document.getElementById('fDedup').addEventListener('change',applyFilters);
 /* ---- IMPORT XLSX ---- */
 function pad(n){return String(n).padStart(2,'0');}
-function statusOf(d){if(d===null||d===undefined)return 'Sem data';if(d>20)return 'A vencer em 30 dias';if(d>10)return 'A vencer em 20 dias';if(d>0)return 'A vencer em 10 dias';if(d===0)return 'Vence hoje';if(d>=-3)return 'Vencido recente (1-3 dias)';if(d>=-7)return 'Vencido (4-7 dias)';return 'Vencido crítico (8+ dias)';}
+function statusOf(d){if(d===null||d===undefined)return 'Sem data';if(d>30)return 'No prazo (+30 dias)';if(d>20)return 'A vencer em 30 dias';if(d>10)return 'A vencer em 20 dias';if(d>0)return 'A vencer em 10 dias';if(d===0)return 'Vence hoje';if(d>=-3)return 'Vencido recente (1-3 dias)';if(d>=-7)return 'Vencido (4-7 dias)';return 'Vencido crítico (8+ dias)';}
 function num(v){if(typeof v==='number')return v;if(v==null)return 0;const n=parseFloat(String(v).replace(/\./g,'').replace(',','.'));return isNaN(n)?0:n;}
 function str(v){return v==null?'':String(v).trim();}
 function toDate(v){if(v==null||v==='')return null;if(v instanceof Date)return v;if(typeof v==='number'){return new Date(Math.round((v-25569)*86400000));}const s=String(v).trim();let m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);if(m){let y=+m[3];if(y<100)y+=2000;return new Date(y,+m[2]-1,+m[1]);}const d=new Date(s);return isNaN(d)?null:d;}
